@@ -40,6 +40,10 @@
     "tslint": "^5.17.0",
     "typescript": "^3.5.1"
   },
+  "files": [
+    "dist",
+    "types"
+  ],
   "author": {
     "name": "Manuel Fernández",
     "email": "manferlo81@gmail.com"
