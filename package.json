@@ -12,8 +12,9 @@
     "min": "browser"
   },
   "scripts": {
-    "clean": "rm -rf .cache dist types",
-    "build": "bundlib -d",
+    "clean": "rm -rf .cache dist types coverage",
+    "dev": "bundlib -dw",
+    "build": "tslint src/**/*.ts && bundlib -d",
     "test": "jest --colors",
     "preversion": "npm run clean && npm run build && npm test"
   },
