@@ -1,6 +1,7 @@
 const { main } = require("./package.json");
 
 const CI = process.env.CI;
+const threshold = 99;
 
 module.exports = {
 
@@ -19,7 +20,14 @@ module.exports = {
     "text",
     "text-summary",
   ],
-  coverageThreshold: null,
+  coverageThreshold: {
+    global: {
+      branches: threshold,
+      functions: threshold,
+      lines: threshold,
+      statements: threshold,
+    },
+  },
 
   verbose: true,
 
