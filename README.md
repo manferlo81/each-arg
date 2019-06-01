@@ -50,6 +50,8 @@ eachArg(arr, start, callback(value, index, ...extra): any, ...extra): void;
 
 Iterates over the `array` or `array-like` `arr` starting from the `start` index. The `callback` function will be called for every `value` in the array, with the `value` itself, the `index` of the current item and any `extra` argument passed to `eachArg` function.
 
+If the `callback` returns a truthy value the iteration will stop.
+
 Any `extra` argument passed to `eachArg` function will be passed down to the `callback` function.
 
 The `callback` function inherits the `this` value form the `eachArg` function call. If you need a specific value inside the `callback`, call `eachArg` using it's `call` method.

@@ -1,3 +1,7 @@
+# 0.1.3 (01-06-2019)
+
+* improved documentation
+
 # 0.1.2 (01-06-2019)
 
 * added `size` badges
