@@ -34,4 +34,6 @@ jobs:
             - node_modules
           key: v1-each-arg-deps-{{ checksum "package.json" }}
 
+      - run: npm run build
+
       - run: npm test
