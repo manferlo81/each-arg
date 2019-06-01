@@ -1,5 +1,6 @@
 # 0.1.2 (01-06-2019)
 
+* added `size` badges
 * added `greenkeepers`
 
 # 0.1.1 (01-06-2019)
