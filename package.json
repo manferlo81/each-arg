@@ -2,7 +2,15 @@
   "name": "each-arg",
   "version": "0.1.0",
   "description": "Iterates through arguments or any other array-like object starting from specific index.",
-  "keywords": [],
+  "keywords": [
+    "each",
+    "for-each",
+    "arguments",
+    "params",
+    "array",
+    "array-like",
+    "callback"
+  ],
   "main": "dist/each-arg.cjs.js",
   "module": "dist/each-arg.es.js",
   "browser": "dist/each-arg.umd.js",
