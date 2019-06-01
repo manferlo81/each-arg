@@ -1,6 +1,6 @@
 # each-arg
 
-[![CircleCI](https://circleci.com/gh/manferlo81/each-arg.svg?style=svg)](https://circleci.com/gh/manferlo81/each-arg)
+[![CircleCI](https://circleci.com/gh/manferlo81/each-arg.svg?style=svg)](https://circleci.com/gh/manferlo81/each-arg) [![npm](https://img.shields.io/npm/v/each-arg.svg)](https://www.npmjs.com/package/each-arg) [![jsdelivr](https://data.jsdelivr.com/v1/package/npm/each-arg/badge?style=rounded)](https://www.jsdelivr.com/package/npm/each-arg) [![dependencies Status](https://david-dm.org/manferlo81/each-arg/status.svg)](https://david-dm.org/manferlo81/each-arg) [![devDependencies Status](https://david-dm.org/manferlo81/each-arg/dev-status.svg)](https://david-dm.org/manferlo81/each-arg?type=dev) [![npm type definitions](https://img.shields.io/npm/types/each-arg.svg)](https://github.com/microsoft/TypeScript) [![codecov](https://codecov.io/gh/manferlo81/each-arg/branch/master/graph/badge.svg)](https://codecov.io/gh/manferlo81/each-arg) [![Known Vulnerabilities](https://snyk.io/test/github/manferlo81/each-arg/badge.svg?targetFile=package.json)](https://snyk.io/test/github/manferlo81/each-arg?targetFile=package.json) [![license](https://img.shields.io/npm/l/each-arg.svg)](LICENSE)
 
 Iterates through arguments or any other array-like object starting from specific index.
 
@@ -9,6 +9,40 @@ Iterates through arguments or any other array-like object starting from specific
 ```bach
 npm i each-arg
 ```
+
+## CDN
+
+### jsDelivr
+
+[www.jsdelivr.com](https://www.jsdelivr.com)
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/each-arg@latest/dist/each-arg.umd.js">
+```
+
+#### for production
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/each-arg@latest/dist/each-arg.umd.min.js">
+```
+
+[more options...](https://www.jsdelivr.com/package/npm/each-arg?version=latest)
+
+### unpkg
+
+[unpkg.com](https://unpkg.com)
+
+```html
+<script src="https://unpkg.com/each-arg@latest/dist/each-arg.umd.js">
+```
+
+#### for production
+
+```html
+<script src="https://unpkg.com/each-arg@latest/dist/each-arg.umd.min.js">
+```
+
+[more options...](https://unpkg.com/each-arg@latest/)
 
 ## Usage
 
