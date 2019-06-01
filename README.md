@@ -1,5 +1,7 @@
 # each-arg
 
+[![CircleCI](https://circleci.com/gh/manferlo81/each-arg.svg?style=svg)](https://circleci.com/gh/manferlo81/each-arg)
+
 Iterates through arguments or any other array-like object starting from specific index.
 
 ## Install
