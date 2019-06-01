@@ -35,12 +35,15 @@ test("should return undefined", () => {
 test("should inherit this value", () => {
 
   const thisValue = {};
+  const arr = [1, 2, 3];
 
   const callback = jest.fn(function () {
     expect(this).toBe(thisValue);
   });
 
-  eachArg.call(thisValue, [1, 2, 3], 0, callback);
+  eachArg.call(thisValue, arr, 0, callback);
+
+  expect(callback).toHaveBeenCalledTimes(arr.length);
 
 });
 
