@@ -1,6 +1,6 @@
 {
   "name": "each-arg",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Iterates through arguments or any other array-like object starting from specific index.",
   "main": "dist/each-arg.cjs.js",
   "module": "dist/each-arg.es.js",
