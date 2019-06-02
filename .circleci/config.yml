@@ -58,6 +58,7 @@ jobs:
           paths:
             - dist
             - types
+            - src
             - coverage
 
   upload_coverage:
