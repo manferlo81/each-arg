@@ -2,6 +2,15 @@
 
 const eachArg = require("..");
 
+test("should throw on not enough arguments", () => {
+
+  expect(() => {
+    // @ts-ignore
+    eachArg([1, 2, 3], 0);
+  }).toThrow(TypeError);
+
+});
+
 test("should throw on invalid array-like param", () => {
 
   /** @type { any } */
@@ -20,6 +29,17 @@ test("should throw on invalid start param", () => {
 
   expect(() => {
     eachArg([1, 2, 3], invalidStart, () => { });
+  }).toThrow(TypeError);
+
+});
+
+test("should throw on invalid callback param", () => {
+
+  /** @type { any } */
+  const invalidCallback = {};
+
+  expect(() => {
+    eachArg([1, 2, 3], 0, invalidCallback);
   }).toThrow(TypeError);
 
 });
@@ -47,7 +67,34 @@ test("should inherit this value", () => {
 
 });
 
-test("should pass extra args", () => {
+test("should work with no extra arguments", () => {
+
+  const array = [1, 2, 3, 4];
+  const callback = jest.fn();
+
+  eachArg(array, 0, callback);
+
+  array.forEach((value, index) => {
+    expect(callback).toHaveBeenNthCalledWith(index + 1, value, index);
+  });
+
+});
+
+test("should work with 1 extra arguments", () => {
+
+  const array = [1, 2, 3, 4];
+  const callback = jest.fn();
+  const extra1 = {};
+
+  eachArg(array, 0, callback, extra1);
+
+  array.forEach((value, index) => {
+    expect(callback).toHaveBeenNthCalledWith(index + 1, value, index, extra1);
+  });
+
+});
+
+test("should work with more than 1 extra arguments", () => {
 
   const array = [1, 2, 3, 4];
   const callback = jest.fn();
