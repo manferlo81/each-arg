@@ -29,9 +29,11 @@
   },
   "dependencies": {
     "args-to-arr": "^1.3.11",
-    "is-array-like": "^1.1.2"
+    "is-array-like": "^1.1.2",
+    "is-function": "^1.0.1"
   },
   "devDependencies": {
+    "@types/is-function": "^1.0.0",
     "@types/jest": "^24.0.13",
     "@types/node": "^12.0.4",
     "bundlib": "^0.4.1",
