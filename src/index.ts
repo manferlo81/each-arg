@@ -25,9 +25,8 @@ function eachArg<V, E extends any[], TH = any>(
 
   const args = arguments;
   const argsLen = args.length;
-  const extraLength = argsLen - 3;
 
-  if (extraLength < 0) {
+  if (argsLen < 3) {
     throw new TypeError(`expected 3 arguments, got ${argsLen}`);
   }
 
@@ -43,7 +42,7 @@ function eachArg<V, E extends any[], TH = any>(
     throw new TypeError(`${callback} is not a function.`);
   }
 
-  if (extraLength === 0) {
+  if (argsLen === 3) {
 
     for (let i0 = start, len = arr.length; i0 < len; i0++) {
       if (callback.call<TH, any, any>(this, arr[i0], i0)) {
@@ -51,7 +50,7 @@ function eachArg<V, E extends any[], TH = any>(
       }
     }
 
-  } else if (extraLength === 1) {
+  } else if (argsLen === 4) {
 
     for (let i1 = start, len = arr.length; i1 < len; i1++) {
       if (callback.call<TH, any, any>(this, arr[i1], i1, args[3])) {
