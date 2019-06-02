@@ -55,7 +55,10 @@ jobs:
 
       - persist_to_workspace:
           root: *working_directory
-          paths: .
+          paths:
+            - coverage/**
+            - dist/**
+            - types/**
 
   upload_coverage:
     executor: node
