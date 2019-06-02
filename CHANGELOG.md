@@ -1,5 +1,6 @@
 # 1.0.0 (02-06-2019)
 
+* dependencies updated
 * improved performance
 * refactroing
 * test refactroing
