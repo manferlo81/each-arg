@@ -42,9 +42,11 @@ function eachArg<V, E extends any[], TH = any>(
     throw new TypeError(`${callback} is not a function.`);
   }
 
+  const len = arr.length;
+
   if (argsLen === 3) {
 
-    for (let i0 = start, len = arr.length; i0 < len; i0++) {
+    for (let i0 = start; i0 < len; i0++) {
       if (callback.call<TH, any, any>(this, arr[i0], i0)) {
         return;
       }
@@ -52,7 +54,7 @@ function eachArg<V, E extends any[], TH = any>(
 
   } else if (argsLen === 4) {
 
-    for (let i1 = start, len = arr.length; i1 < len; i1++) {
+    for (let i1 = start; i1 < len; i1++) {
       if (callback.call<TH, any, any>(this, arr[i1], i1, args[3])) {
         return;
       }
@@ -62,7 +64,7 @@ function eachArg<V, E extends any[], TH = any>(
 
     const extra = toArray(args, 3) as E;
 
-    for (let i = start, len = arr.length; i < len; i++) {
+    for (let i = start; i < len; i++) {
       if (callback.call<TH, any, any>(this, arr[i], i, ...extra)) {
         return;
       }
