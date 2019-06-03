@@ -9,6 +9,36 @@ type EachArgCallback<V, E extends any[], TH = any> = (
   ...extra: E
 ) => any;
 
+function error(message: string) {
+  return new TypeError(message);
+}
+
+function wrapCallback<V, E extends any[], TH = any>(callback: EachArgCallback<V, E, TH>, args: IArguments) {
+
+  const extraLen = args.length - 3;
+
+  return (extraLen === 0)
+    ? (thisArg: TH, arr: ArrayLike<V>, index: number) => callback.call<TH, any, any>(
+      thisArg,
+      arr[index],
+      index,
+    )
+    : (extraLen === 1)
+      ? (thisArg: TH, arr: ArrayLike<V>, index: number) => callback.call<TH, any, any>(
+        thisArg,
+        arr[index],
+        index,
+        args[3],
+      )
+      : (thisArg: TH, arr: ArrayLike<V>, index: number) => callback.call<TH, any, any>(
+        thisArg,
+        arr[index],
+        index,
+        ...toArray(args, 3) as E,
+      );
+
+}
+
 function eachArg<V, E extends any[], TH = any>(
   this: TH,
   arr: ArrayLike<V>,
@@ -27,49 +57,27 @@ function eachArg<V, E extends any[], TH = any>(
   const argsLen = args.length;
 
   if (argsLen < 3) {
-    throw new TypeError(`expected 3 arguments, got ${argsLen}`);
+    throw error(`expected 3 arguments, got ${argsLen}`);
   }
 
   if (!isArrayLike(arr)) {
-    throw new TypeError(`${arr} can't be converted to array.`);
+    throw error(`${arr} can't be converted to array.`);
   }
 
   if (typeof start !== "number") {
-    throw new TypeError(`${start} is not a number.`);
+    throw error(`${start} is not a number.`);
   }
 
   if (!isFunction(callback)) {
-    throw new TypeError(`${callback} is not a function.`);
+    throw error(`${callback} is not a function.`);
   }
 
-  const len = arr.length;
+  const cb = wrapCallback(callback, arguments);
 
-  if (argsLen === 3) {
-
-    for (let i0 = start; i0 < len; i0++) {
-      if (callback.call<TH, any, any>(this, arr[i0], i0)) {
-        return;
-      }
+  for (let i = start, len = arr.length; i < len; i++) {
+    if (cb(this, arr, i)) {
+      return;
     }
-
-  } else if (argsLen === 4) {
-
-    for (let i1 = start; i1 < len; i1++) {
-      if (callback.call<TH, any, any>(this, arr[i1], i1, args[3])) {
-        return;
-      }
-    }
-
-  } else {
-
-    const extra = toArray(args, 3) as E;
-
-    for (let i = start; i < len; i++) {
-      if (callback.call<TH, any, any>(this, arr[i], i, ...extra)) {
-        return;
-      }
-    }
-
   }
 
 }
