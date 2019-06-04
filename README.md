@@ -77,6 +77,21 @@ eachArg([1, 2, 3, 4, 5], 1, (value, index, num) => {
 4 >> 103
 ```
 
+### Node.js
+
+```javascript
+const eachArg = require("each-arg");
+eachArg(args, start, callback);
+```
+
+### Browser
+
+*After adding the* `script` *tag,* `eachArg` *function will be available globally through* `eachArg` *or* `window.eachArg`*.*
+
+```javascript
+eachArg(args, start, callback);
+```
+
 ## License
 
 [MIT](LICENSE) &copy; [Manuel Fernández](https://github.com/manferlo81)
