@@ -1,6 +1,7 @@
 # 1.0.3 (04-06-2019)
 
 * improved documentation
+* dependencies updated
 
 # 1.0.2 (04-06-2019)
 
