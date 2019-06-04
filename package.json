@@ -1,6 +1,6 @@
 {
   "name": "each-arg",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Iterates through arguments or any other array-like object starting from specific index.",
   "keywords": [
     "each",
