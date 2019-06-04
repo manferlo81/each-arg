@@ -72,7 +72,7 @@ function eachArg<V, E extends any[], TH = any>(
     throw error(`${callback} is not a function.`);
   }
 
-  const cb = wrapCallback(callback, arguments);
+  const cb = wrapCallback(callback, args);
 
   for (let i = start, len = arr.length; i < len; i++) {
     if (cb(this, arr, i)) {

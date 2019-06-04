@@ -1,13 +1,18 @@
+# 1.0.2 (04-06-2019)
+
+* refactoring
+* performance improvements on none & 1 extra argument
+
 # 1.0.1 (02-06-2019)
 
-* refactroing
+* refactoring
 
 # 1.0.0 (02-06-2019)
 
 * dependencies updated
 * improved performance
-* refactroing
-* test refactroing
+* refactoring
+* test refactoring
 
 # 0.1.3 (01-06-2019)
 
