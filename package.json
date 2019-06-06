@@ -28,15 +28,15 @@
     "preversion": "npm run clean && npm run build && npm test"
   },
   "dependencies": {
-    "args-to-arr": "^1.3.13",
+    "args-to-arr": "^1.3.14",
     "is-array-like": "^1.1.2",
     "is-function": "^1.0.1"
   },
   "devDependencies": {
     "@types/is-function": "^1.0.0",
     "@types/jest": "^24.0.13",
-    "@types/node": "^12.0.5",
-    "bundlib": "^0.4.1",
+    "@types/node": "^12.0.6",
+    "bundlib": "^0.5.1",
     "eslint": "^5.16.0",
     "jest": "^24.8.0",
     "tslint": "^5.17.0",
