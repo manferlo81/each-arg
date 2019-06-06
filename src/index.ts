@@ -2,7 +2,9 @@ import toArray from "args-to-arr";
 import isArrayLike from "is-array-like";
 import isFunction from "is-function";
 
-type EachArgCallback<V, E extends any[], TH = any> = (
+type Extra = any[];
+
+type EachArgCallback<V, E extends Extra, TH = any> = (
   this: TH,
   value: V,
   index: number,
@@ -13,7 +15,7 @@ function error(message: string) {
   return new TypeError(message);
 }
 
-function wrapCallback<V, E extends any[], TH = any>(callback: EachArgCallback<V, E, TH>, args: IArguments) {
+function wrapCallback<V, E extends Extra, TH = any>(callback: EachArgCallback<V, E, TH>, args: IArguments) {
 
   const extraLen = args.length - 3;
 
@@ -39,14 +41,23 @@ function wrapCallback<V, E extends any[], TH = any>(callback: EachArgCallback<V,
 
 }
 
-function eachArg<V, E extends any[], TH = any>(
+function eachArg<V, E extends Extra, TH = any>(
   this: TH,
   arr: ArrayLike<V>,
   start: number,
   callback: EachArgCallback<V, E, TH>,
   ...extra: E
 ): void;
-function eachArg<V, E extends any[], TH = any>(
+
+function eachArg<V, TH = any>(
+  this: TH,
+  arr: ArrayLike<V>,
+  start: number,
+  callback: EachArgCallback<V, Extra, TH>,
+  ...extra: Extra
+): void;
+
+function eachArg<V, E extends Extra, TH = any>(
   this: TH,
   arr: ArrayLike<V>,
   start: number,

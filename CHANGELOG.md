@@ -1,6 +1,7 @@
 # 1.0.4 (07-06-2019)
 
 * dependencies updated
+* improved types 
 
 # 1.0.3 (04-06-2019)
 
