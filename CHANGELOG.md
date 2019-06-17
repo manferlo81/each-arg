@@ -1,6 +1,7 @@
 # next
 
 * dependencies updated
+* minor improvements
 
 # 1.0.4 (07-06-2019)
 

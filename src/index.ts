@@ -15,9 +15,13 @@ function error(message: string) {
   return new TypeError(message);
 }
 
-function wrapCallback<V, E extends Extra, TH = any>(callback: EachArgCallback<V, E, TH>, args: IArguments) {
+function wrapCallback<V, E extends Extra, TH = any>(
+  callback: EachArgCallback<V, E, TH>,
+  args: IArguments,
+  argsLen: number,
+) {
 
-  const extraLen = args.length - 3;
+  const extraLen = argsLen - 3;
 
   return (extraLen === 0)
     ? (thisArg: TH, arr: ArrayLike<V>, index: number) => callback.call<TH, any, any>(
@@ -83,7 +87,7 @@ function eachArg<V, E extends Extra, TH = any>(
     throw error(`${callback} is not a function.`);
   }
 
-  const cb = wrapCallback(callback, args);
+  const cb = wrapCallback(callback, args, argsLen);
 
   for (let i = start, len = arr.length; i < len; i++) {
     if (cb(this, arr, i)) {
