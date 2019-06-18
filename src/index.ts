@@ -79,8 +79,8 @@ function eachArg<V, E extends Extra, TH = any>(
     throw error(`${arr} can't be converted to array.`);
   }
 
-  if (typeof start !== "number") {
-    throw error(`${start} is not a number.`);
+  if (typeof start !== "number" || !isFinite(start)) {
+    throw error(`${start} is not a valid start point.`);
   }
 
   if (!isFunction(callback)) {

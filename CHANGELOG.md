@@ -2,6 +2,7 @@
 
 ## 1.1.0 (18-06-2019)
 
+* throw on NaN or Infinite start index
 * skip non-existent values
 * dependencies updated
 * minor improvements

@@ -24,12 +24,23 @@ test("should throw on invalid array-like param", () => {
 
 test("should throw on invalid start param", () => {
 
-  /** @type { any } */
-  const invalidStart = {};
+  const invalidStart = [
+    {},
+    [],
+    true,
+    false,
+    1 / 0,
+    -1 / 0,
+    Infinity,
+    -Infinity,
+    1 / +"NaN",
+    NaN,
+  ];
 
-  expect(() => {
-    eachArg([1, 2, 3], invalidStart, () => { });
-  }).toThrow(TypeError);
+  invalidStart.forEach((start) => {
+    // @ts-ignore
+    expect(() => eachArg([1, 2, 3], start, () => { })).toThrow(TypeError);
+  });
 
 });
 
