@@ -13,12 +13,20 @@ test("should throw on not enough arguments", () => {
 
 test("should throw on invalid array-like param", () => {
 
-  /** @type { any } */
-  const invalidArrayLike = {};
+  const invalidArrayLike = [
+    {},
+    function () { },
+    () => { },
+    0,
+    1,
+    true,
+    false,
+  ];
 
-  expect(() => {
-    eachArg(invalidArrayLike, 0, () => { });
-  }).toThrow(TypeError);
+  invalidArrayLike.forEach((array) => {
+    // @ts-ignore
+    expect(() => eachArg(array, 0, () => { })).toThrow(TypeError);
+  });
 
 });
 
