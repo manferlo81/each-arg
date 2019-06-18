@@ -4,10 +4,8 @@ const eachArg = require("..");
 
 test("should throw on not enough arguments", () => {
 
-  expect(() => {
-    // @ts-ignore
-    eachArg([1, 2, 3], 0);
-  }).toThrow(TypeError);
+  // @ts-ignore
+  expect(() => eachArg([1, 2, 3], 0)).toThrow(TypeError);
 
 });
 
@@ -35,6 +33,8 @@ test("should throw on invalid start param", () => {
   const invalidStart = [
     {},
     [],
+    function () { },
+    () => { },
     true,
     false,
     1 / 0,
@@ -43,6 +43,8 @@ test("should throw on invalid start param", () => {
     -Infinity,
     1 / +"NaN",
     NaN,
+    "",
+    "string",
   ];
 
   invalidStart.forEach((start) => {
@@ -54,12 +56,23 @@ test("should throw on invalid start param", () => {
 
 test("should throw on invalid callback param", () => {
 
-  /** @type { any } */
-  const invalidCallback = {};
+  const invalidCallback = [
+    {},
+    [],
+    0,
+    1,
+    true,
+    false,
+    "",
+    "string",
+  ];
 
-  expect(() => {
-    eachArg([1, 2, 3], 0, invalidCallback);
-  }).toThrow(TypeError);
+  invalidCallback.forEach((callback) => {
+
+    // @ts-ignore
+    expect(() => eachArg([1, 2, 3], 0, callback)).toThrow(TypeError);
+
+  });
 
 });
 
@@ -154,23 +167,54 @@ test("should work with empty string", () => {
 
 test("should work with string", () => {
 
+  const str = "string";
   const callback = jest.fn();
 
-  eachArg("abc", 0, callback);
+  eachArg(str, 0, callback);
 
-  expect(callback).toHaveBeenCalledTimes(3);
+  expect(callback).toHaveBeenCalledTimes(str.length);
 
 });
 
-test("should start from given start point", () => {
+test("should start from given start index", () => {
 
-  const args = [1, 2, 3];
-  const start = 1;
+  const values = [2, 3];
+  const args = [1, ...values];
+  const start = args.length - values.length;
   const callback = jest.fn();
 
   eachArg(args, start, callback);
 
-  expect(callback).toHaveBeenCalledTimes(args.length - start);
+  values.forEach((value, index) => {
+
+    expect(callback).toHaveBeenNthCalledWith(
+      index + 1,
+      value,
+      index + start,
+    );
+
+  });
+
+});
+
+test("should start from negative start index", () => {
+
+  const values = [2, 3];
+  const args = [1, ...values];
+  const start = -values.length;
+  const callback = jest.fn();
+
+  eachArg(args, start, callback);
+
+  values.forEach((value, index) => {
+
+    expect(callback).toHaveBeenNthCalledWith(
+      index + 1,
+      value,
+      index + args.length + start,
+    );
+
+  });
 
 });
 

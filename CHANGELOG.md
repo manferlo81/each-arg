@@ -2,6 +2,8 @@
 
 ## 1.1.0 (18-06-2019)
 
+* improved documentation
+* negative start index support
 * added string support
 * throw on NaN or Infinite start index
 * skip non-existent values

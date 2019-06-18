@@ -40,27 +40,29 @@ npm i each-arg
 
 [more options...](https://unpkg.com/each-arg@latest/)
 
-## Usage
+## Reference
 
-##### syntax
+###### syntax
 
 ```typescript
 eachArg(arr, start, callback(value, index, ...extra): any, ...extra): void;
 ```
 
-Iterates over the `array` or `array-like` `arr` starting from the `start` index. The `callback` function will be called for every `value` in the array, with the `value` itself, the `index` of the current item and any `extra` argument passed to `eachArg` function.
+*Iterates over the* `array`*,* `string` *or* `array-like` `arr` *starting from the* `start` *index. The* `callback` *function will be called for every* `value` *in the array, with the* `value` *itself, the* `index` *of the current item and any* `extra` *argument passed to* `eachArg` *function.*
 
-If the `callback` returns a truthy value the iteration will stop.
+*If a negative* `start` *index is provided the iteration will start from* `X` *number of items counting from the last item in the input array-like.*
 
-Any `extra` argument passed to `eachArg` function will be passed down to the `callback` function.
+*If the* `callback` *returns a truthy value the iteration will stop.*
 
-The `callback` function inherits the `this` value form the `eachArg` function call. If you need a specific value inside the `callback`, call `eachArg` using it's `call` method.
+*Any* `extra` *argument passed to* `eachArg` *function will be passed down to the* `callback` *function.*
+
+*The* `callback` *function inherits the* `this` *value form the* `eachArg` *function call. If you need a specific value inside the* `callback`, *call* `eachArg` *using it's* `call` *method.*
 
 ```typescript
 eachArg.call(thisArg, arr, start, callback, ..extra);
 ```
 
-##### example
+###### example
 
 ```javascript
 import eachArg from "each-arg";
@@ -76,6 +78,8 @@ eachArg([1, 2, 3, 4, 5], 1, (value, index, num) => {
 3 >> 102
 4 >> 103
 ```
+
+## Usage
 
 ### Node.js
 

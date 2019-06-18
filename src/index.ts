@@ -89,10 +89,16 @@ function eachArg<V, E extends Extra, TH = any>(
     throw error(`${callback} is not a function.`);
   }
 
-  const arrObj = Object(arr);
+  const arrObj = Object(arr) as ArrayLike<V>;
+  const len = arrObj.length;
+
+  if (start < 0) {
+    start += len;
+  }
+
   const cb = wrapCallback(callback, this, arrObj, args, argsLen);
 
-  for (let i = start, len = arrObj.length; i < len; i++) {
+  for (let i = start; i < len; i++) {
     if (i in arrObj && cb(i)) {
       return;
     }
