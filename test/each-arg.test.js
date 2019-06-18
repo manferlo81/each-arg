@@ -113,7 +113,7 @@ test("should work with 1 extra arguments", () => {
 
 });
 
-test("should work with more than 1 extra arguments", () => {
+test("should work with multiple extra arguments", () => {
 
   const array = [1, 2, 3, 4];
   const callback = jest.fn();
@@ -125,6 +125,40 @@ test("should work with more than 1 extra arguments", () => {
   array.forEach((value, index) => {
     expect(callback).toHaveBeenNthCalledWith(index + 1, value, index, extra1, extra2);
   });
+
+});
+
+test("should work with arguments object", () => {
+
+  const args = [1, 2, 3];
+  const callback = jest.fn();
+
+  const func = function () {
+    eachArg(arguments, 0, callback);
+  };
+
+  func(...args);
+
+  expect(callback).toHaveBeenCalledTimes(args.length);
+
+});
+
+test("should work with empty string", () => {
+
+  const callback = jest.fn();
+
+  expect(() => eachArg("", 0, callback)).not.toThrow();
+  expect(callback).toHaveBeenCalledTimes(0);
+
+});
+
+test("should work with string", () => {
+
+  const callback = jest.fn();
+
+  eachArg("abc", 0, callback);
+
+  expect(callback).toHaveBeenCalledTimes(3);
 
 });
 
@@ -153,7 +187,6 @@ test("should skip non-existent values", () => {
 
 });
 
-
 test("should stop if truthy value returned", () => {
 
   const args = [1, 2, 3, 4];
@@ -166,3 +199,4 @@ test("should stop if truthy value returned", () => {
   expect(callback).toHaveBeenCalledTimes(stopIndex - start + 1);
 
 });
+

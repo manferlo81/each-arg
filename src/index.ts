@@ -17,6 +17,8 @@ function error(message: string) {
 
 function wrapCallback<V, E extends Extra, TH = any>(
   callback: EachArgCallback<V, E, TH>,
+  thisArg: TH,
+  arr: IArguments | V[] | string | ArrayLike<V>,
   args: IArguments,
   argsLen: number,
 ) {
@@ -24,22 +26,22 @@ function wrapCallback<V, E extends Extra, TH = any>(
   const extraLen = argsLen - 3;
 
   return (extraLen === 0)
-    ? (thisArg: TH, arr: ArrayLike<V>, index: number) => callback.call<TH, any, any>(
+    ? (i: number) => callback.call<TH, any, any>(
       thisArg,
-      arr[index],
-      index,
+      arr[i],
+      i,
     )
     : (extraLen === 1)
-      ? (thisArg: TH, arr: ArrayLike<V>, index: number) => callback.call<TH, any, any>(
+      ? (i: number) => callback.call<TH, any, any>(
         thisArg,
-        arr[index],
-        index,
+        arr[i],
+        i,
         args[3],
       )
-      : (thisArg: TH, arr: ArrayLike<V>, index: number) => callback.call<TH, any, any>(
+      : (i: number) => callback.call<TH, any, any>(
         thisArg,
-        arr[index],
-        index,
+        arr[i],
+        i,
         ...toArray(args, 3) as E,
       );
 
@@ -47,7 +49,7 @@ function wrapCallback<V, E extends Extra, TH = any>(
 
 function eachArg<V, E extends Extra, TH = any>(
   this: TH,
-  arr: ArrayLike<V>,
+  arr: IArguments | V[] | string | ArrayLike<V>,
   start: number,
   callback: EachArgCallback<V, E, TH>,
   ...extra: E
@@ -55,7 +57,7 @@ function eachArg<V, E extends Extra, TH = any>(
 
 function eachArg<V, TH = any>(
   this: TH,
-  arr: ArrayLike<V>,
+  arr: IArguments | V[] | string | ArrayLike<V>,
   start: number,
   callback: EachArgCallback<V, Extra, TH>,
   ...extra: Extra
@@ -63,7 +65,7 @@ function eachArg<V, TH = any>(
 
 function eachArg<V, E extends Extra, TH = any>(
   this: TH,
-  arr: ArrayLike<V>,
+  arr: IArguments | V[] | string | ArrayLike<V>,
   start: number,
   callback: EachArgCallback<V, E, TH>,
 ): void {
@@ -75,7 +77,7 @@ function eachArg<V, E extends Extra, TH = any>(
     throw error(`expected 3 arguments, got ${argsLen}`);
   }
 
-  if (!isArrayLike(arr)) {
+  if (!isArrayLike(arr) && arr !== "") {
     throw error(`${arr} can't be converted to array.`);
   }
 
@@ -87,10 +89,11 @@ function eachArg<V, E extends Extra, TH = any>(
     throw error(`${callback} is not a function.`);
   }
 
-  const cb = wrapCallback(callback, args, argsLen);
+  const arrObj = Object(arr);
+  const cb = wrapCallback(callback, this, arrObj, args, argsLen);
 
-  for (let i = start, len = arr.length; i < len; i++) {
-    if (i in arr && cb(this, arr, i)) {
+  for (let i = start, len = arrObj.length; i < len; i++) {
+    if (i in arrObj && cb(i)) {
       return;
     }
   }
