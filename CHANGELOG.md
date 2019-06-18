@@ -1,7 +1,8 @@
 # each-arg changelog
 
-## 1.0.5 (18-06-2019)
+## 1.1.0 (18-06-2019)
 
+* skip non-existent values
 * dependencies updated
 * minor improvements
 

@@ -121,6 +121,20 @@ test("should start from given start point", () => {
 
 });
 
+test("should skip non-existent values", () => {
+
+  // eslint-disable-next-line no-sparse-arrays
+  const args = [1, , 2, 3];
+  const start = 0;
+  const callback = jest.fn();
+
+  eachArg(args, start, callback);
+
+  expect(callback).toHaveBeenCalledTimes(args.length - start - 1);
+
+});
+
+
 test("should stop if truthy value returned", () => {
 
   const args = [1, 2, 3, 4];

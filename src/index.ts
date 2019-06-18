@@ -90,7 +90,7 @@ function eachArg<V, E extends Extra, TH = any>(
   const cb = wrapCallback(callback, args, argsLen);
 
   for (let i = start, len = arr.length; i < len; i++) {
-    if (cb(this, arr, i)) {
+    if (i in arr && cb(this, arr, i)) {
       return;
     }
   }
