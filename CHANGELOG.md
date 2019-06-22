@@ -1,5 +1,9 @@
 # each-arg changelog
 
+## 1.1.1 (22-06-2019)
+
+* dependencies updated
+
 ## 1.1.0 (18-06-2019)
 
 * improved documentation
