@@ -11,6 +11,8 @@ type EachArgCallback<V, E extends Extra, TH = any> = (
   ...extra: E
 ) => any;
 
+type WrappedEachArgCallback = (index: number) => any;
+
 function error(message: string) {
   return new TypeError(message);
 }
@@ -21,7 +23,7 @@ function wrapCallback<V, E extends Extra, TH = any>(
   arr: IArguments | V[] | string | ArrayLike<V>,
   args: IArguments,
   argsLen: number,
-) {
+): WrappedEachArgCallback {
 
   const extraLen = argsLen - 3;
 
