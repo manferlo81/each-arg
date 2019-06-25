@@ -1,5 +1,10 @@
 # each-arg changelog
 
+## 1.1.2
+*25-JUN-2019*
+
+* dependencies updated
+
 ## 1.1.1
 *22-JUN-2019*
 
