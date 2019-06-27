@@ -16,7 +16,6 @@
   "browser": "dist/each-arg.umd.js",
   "types": "types/index.d.ts",
   "bundlib": {
-    "name": "eachArg",
     "equals": true,
     "min": "browser"
   },
