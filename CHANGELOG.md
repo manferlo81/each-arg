@@ -1,9 +1,10 @@
 # each-arg changelog
 
 ## 1.1.2
-*27-JUN-2019*
+*29-JUN-2019*
 
 * dependencies updated
+* `ts-jest` for typescript test
 
 ## 1.1.1
 *22-JUN-2019*

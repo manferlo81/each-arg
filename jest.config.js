@@ -1,5 +1,3 @@
-const { main } = require("./package.json");
-
 const CI = process.env.CI;
 const threshold = 95;
 
@@ -10,10 +8,9 @@ module.exports = {
 
   cacheDirectory: "node_modules/.cache/jest",
 
+  preset: "ts-jest",
+
   collectCoverage: true,
-  collectCoverageFrom: [
-    main,
-  ],
   coverageDirectory: "coverage",
   coverageReporters: [
     CI ? "json" : "lcov",

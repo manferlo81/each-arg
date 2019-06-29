@@ -1,8 +1,9 @@
-// @ts-check
-
-const eachArg = require("..");
+import eachArg from "../src";
 
 test("should throw on not enough arguments", () => {
+
+  // @ts-ignore
+  expect(() => eachArg([1, 2, 3])).toThrow(TypeError);
 
   // @ts-ignore
   expect(() => eachArg([1, 2, 3], 0)).toThrow(TypeError);
@@ -13,8 +14,10 @@ test("should throw on invalid array-like param", () => {
 
   const invalidArrayLike = [
     {},
-    function () { },
-    () => { },
+    function invalid() {
+      return null;
+    },
+    () => null,
     0,
     1,
     true,
@@ -23,7 +26,7 @@ test("should throw on invalid array-like param", () => {
 
   invalidArrayLike.forEach((array) => {
     // @ts-ignore
-    expect(() => eachArg(array, 0, () => { })).toThrow(TypeError);
+    expect(() => eachArg(array, 0, () => null)).toThrow(TypeError);
   });
 
 });
@@ -33,8 +36,10 @@ test("should throw on invalid start param", () => {
   const invalidStart = [
     {},
     [],
-    function () { },
-    () => { },
+    function invalid() {
+      return null;
+    },
+    () => null,
     true,
     false,
     1 / 0,
@@ -49,7 +54,7 @@ test("should throw on invalid start param", () => {
 
   invalidStart.forEach((start) => {
     // @ts-ignore
-    expect(() => eachArg([1, 2, 3], start, () => { })).toThrow(TypeError);
+    expect(() => eachArg([1, 2, 3], start, () => null)).toThrow(TypeError);
   });
 
 });
@@ -78,7 +83,7 @@ test("should throw on invalid callback param", () => {
 
 test("should return undefined", () => {
 
-  const result = eachArg([1, 2, 3], 0, () => { });
+  const result = eachArg([1, 2, 3], 0, () => null);
 
   expect(result).toBeUndefined();
 
@@ -89,7 +94,7 @@ test("should inherit this value", () => {
   const thisValue = {};
   const arr = [1, 2, 3];
 
-  const callback = jest.fn(function () {
+  const callback = jest.fn(function cb(this: any) {
     expect(this).toBe(thisValue);
   });
 
@@ -131,7 +136,7 @@ test("should work with multiple extra arguments", () => {
   const array = [1, 2, 3, 4];
   const callback = jest.fn();
   const extra1 = {};
-  const extra2 = [];
+  const extra2: any[] = [];
 
   eachArg(array, 0, callback, extra1, extra2);
 
@@ -146,9 +151,10 @@ test("should work with arguments object", () => {
   const args = [1, 2, 3];
   const callback = jest.fn();
 
-  const func = function () {
+  function func(...args: any[]): void;
+  function func() {
     eachArg(arguments, 0, callback);
-  };
+  }
 
   func(...args);
 
@@ -243,4 +249,3 @@ test("should stop if truthy value returned", () => {
   expect(callback).toHaveBeenCalledTimes(stopIndex - start + 1);
 
 });
-
