@@ -42,7 +42,7 @@ npm i each-arg
 
 ## Reference
 
-###### syntax
+***syntax***
 
 ```typescript
 eachArg(arr, start, callback(value, index, ...extra): any, ...extra): void;
@@ -62,7 +62,7 @@ eachArg(arr, start, callback(value, index, ...extra): any, ...extra): void;
 eachArg.call(thisArg, arr, start, callback, ..extra);
 ```
 
-###### example
+***example***
 
 ```javascript
 import eachArg from "each-arg";
