@@ -1,4 +1,3 @@
-const CI = process.env.CI;
 const threshold = 95;
 
 module.exports = {
@@ -13,7 +12,7 @@ module.exports = {
   collectCoverage: true,
   coverageDirectory: "coverage",
   coverageReporters: [
-    CI ? "json" : "lcov",
+    process.env.CI ? "json" : "lcov",
     "text",
     "text-summary",
   ],
