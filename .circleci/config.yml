@@ -8,7 +8,7 @@ executors:
   node:
     docker:
       - image: circleci/node:10
-    working_directory: &working_directory ~/repo
+    working_directory: &working_directory ~/each-arg
 
 commands:
 
@@ -29,8 +29,8 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - v2-deps-each-arg-{{ checksum "package-lock.json" }}
-            - v2-deps-each-arg-
+            - v3-deps-each-arg-{{ checksum "package.json" }}
+            - v3-deps-each-arg-
       - run:
           name: Install Dependencies
           command: npm install
@@ -41,7 +41,7 @@ jobs:
           name: Run Tests
           command: npm test
       - save_cache:
-          key: v2-deps-each-arg-{{ checksum "package-lock.json" }}
+          key: v3-deps-each-arg-{{ checksum "package.json" }}
           paths:
             - node_modules
       - persist_to_workspace:
