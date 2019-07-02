@@ -15,6 +15,7 @@
   "module": "dist/each-arg.es.js",
   "browser": "dist/each-arg.umd.js",
   "types": "types/index.d.ts",
+  "typings": "types/index.d.ts",
   "bundlib": {
     "equals": true,
     "min": "browser"
