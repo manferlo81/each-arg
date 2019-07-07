@@ -2,7 +2,7 @@
 
 ## 1.1.2
 
-***07-JUL-2019***
+***08-JUL-2019***
 
 * dependencies updated
 * `ts-jest` for typescript test
