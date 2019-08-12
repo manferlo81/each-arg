@@ -25,7 +25,7 @@
     "dev": "bundlib -dw",
     "build": "tslint src/**/*.ts && bundlib -d",
     "test": "jest --color -w 3",
-    "preversion": "npm run clean && npm run build && npm test"
+    "preversion": "npm run clean && npm test && npm run build"
   },
   "dependencies": {
     "args-to-arr": "^1.4.4",
