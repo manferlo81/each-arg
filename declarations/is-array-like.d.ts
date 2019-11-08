@@ -1,2 +1,2 @@
-declare function isArrayLike<T = any>(param: unknown): param is ArrayLike<T>;
+declare function isArrayLike<T = unknown>(param: unknown): param is ArrayLike<T>;
 export default isArrayLike;

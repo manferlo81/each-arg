@@ -13,7 +13,7 @@ type EachArgCallback<V, E extends Extra, TH = any> = (
 
 type WrappedEachArgCallback = (index: number) => any;
 
-function error(message: string) {
+function error(message: string): TypeError {
   return new TypeError(message);
 }
 
@@ -28,19 +28,19 @@ function wrapCallback<V, E extends Extra, TH = any>(
   const extraLen = argsLen - 3;
 
   return (extraLen === 0)
-    ? (i: number) => callback.call<TH, any, any>(
+    ? (i: number): any => callback.call<TH, any, any>(
       thisArg,
       arr[i],
       i,
     )
     : (extraLen === 1)
-      ? (i: number) => callback.call<TH, any, any>(
+      ? (i: number): any => callback.call<TH, any, any>(
         thisArg,
         arr[i],
         i,
         args[3],
       )
-      : (i: number) => callback.call<TH, any, any>(
+      : (i: number): any => callback.call<TH, any, any>(
         thisArg,
         arr[i],
         i,
@@ -72,6 +72,7 @@ function eachArg<V, E extends Extra, TH = any>(
   callback: EachArgCallback<V, E, TH>,
 ): void {
 
+  // eslint-disable-next-line prefer-rest-params
   const args = arguments;
   const argsLen = args.length;
 

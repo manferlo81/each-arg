@@ -2,9 +2,11 @@ import eachArg from "../src";
 
 test("should throw on not enough arguments", () => {
 
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
   // @ts-ignore
   expect(() => eachArg([1, 2, 3])).toThrow(TypeError);
 
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
   // @ts-ignore
   expect(() => eachArg([1, 2, 3], 0)).toThrow(TypeError);
 
@@ -25,6 +27,7 @@ test("should throw on invalid array-like param", () => {
   ];
 
   invalidArrayLike.forEach((array) => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
     expect(() => eachArg(array, 0, () => null)).toThrow(TypeError);
   });
@@ -53,6 +56,7 @@ test("should throw on invalid start param", () => {
   ];
 
   invalidStart.forEach((start) => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
     expect(() => eachArg([1, 2, 3], start, () => null)).toThrow(TypeError);
   });
@@ -73,10 +77,9 @@ test("should throw on invalid callback param", () => {
   ];
 
   invalidCallback.forEach((callback) => {
-
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
     expect(() => eachArg([1, 2, 3], 0, callback)).toThrow(TypeError);
-
   });
 
 });
@@ -153,6 +156,7 @@ test("should work with arguments object", () => {
 
   function func(...args: any[]): void;
   function func() {
+    // eslint-disable-next-line prefer-rest-params
     eachArg(arguments, 0, callback);
   }
 
