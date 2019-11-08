@@ -1,46 +1,46 @@
-import eachArg from "../src";
+import eachArg from '../src'
 
-test("should throw on not enough arguments", () => {
-
-  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-  // @ts-ignore
-  expect(() => eachArg([1, 2, 3])).toThrow(TypeError);
+test('should throw on not enough arguments', () => {
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
   // @ts-ignore
-  expect(() => eachArg([1, 2, 3], 0)).toThrow(TypeError);
+  expect(() => eachArg([1, 2, 3])).toThrow(TypeError)
 
-});
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // @ts-ignore
+  expect(() => eachArg([1, 2, 3], 0)).toThrow(TypeError)
 
-test("should throw on invalid array-like param", () => {
+})
+
+test('should throw on invalid array-like param', () => {
 
   const invalidArrayLike = [
     {},
     function invalid() {
-      return null;
+      return null
     },
     () => null,
     0,
     1,
     true,
     false,
-  ];
+  ]
 
   invalidArrayLike.forEach((array) => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
-    expect(() => eachArg(array, 0, () => null)).toThrow(TypeError);
-  });
+    expect(() => eachArg(array, 0, () => null)).toThrow(TypeError)
+  })
 
-});
+})
 
-test("should throw on invalid start param", () => {
+test('should throw on invalid start param', () => {
 
   const invalidStart = [
     {},
     [],
     function invalid() {
-      return null;
+      return null
     },
     () => null,
     true,
@@ -49,21 +49,21 @@ test("should throw on invalid start param", () => {
     -1 / 0,
     Infinity,
     -Infinity,
-    1 / +"NaN",
+    1 / +'NaN',
     NaN,
-    "",
-    "string",
-  ];
+    '',
+    'string',
+  ]
 
   invalidStart.forEach((start) => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
-    expect(() => eachArg([1, 2, 3], start, () => null)).toThrow(TypeError);
-  });
+    expect(() => eachArg([1, 2, 3], start, () => null)).toThrow(TypeError)
+  })
 
-});
+})
 
-test("should throw on invalid callback param", () => {
+test('should throw on invalid callback param', () => {
 
   const invalidCallback = [
     {},
@@ -72,128 +72,128 @@ test("should throw on invalid callback param", () => {
     1,
     true,
     false,
-    "",
-    "string",
-  ];
+    '',
+    'string',
+  ]
 
   invalidCallback.forEach((callback) => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
-    expect(() => eachArg([1, 2, 3], 0, callback)).toThrow(TypeError);
-  });
+    expect(() => eachArg([1, 2, 3], 0, callback)).toThrow(TypeError)
+  })
 
-});
+})
 
-test("should return undefined", () => {
+test('should return undefined', () => {
 
-  const result = eachArg([1, 2, 3], 0, () => null);
+  const result = eachArg([1, 2, 3], 0, () => null)
 
-  expect(result).toBeUndefined();
+  expect(result).toBeUndefined()
 
-});
+})
 
-test("should inherit this value", () => {
+test('should inherit this value', () => {
 
-  const thisValue = {};
-  const arr = [1, 2, 3];
+  const thisValue = {}
+  const arr = [1, 2, 3]
 
   const callback = jest.fn(function cb(this: any) {
-    expect(this).toBe(thisValue);
-  });
+    expect(this).toBe(thisValue)
+  })
 
-  eachArg.call(thisValue, arr, 0, callback);
+  eachArg.call(thisValue, arr, 0, callback)
 
-  expect(callback).toHaveBeenCalledTimes(arr.length);
+  expect(callback).toHaveBeenCalledTimes(arr.length)
 
-});
+})
 
-test("should work with no extra arguments", () => {
+test('should work with no extra arguments', () => {
 
-  const array = [1, 2, 3, 4];
-  const callback = jest.fn();
+  const array = [1, 2, 3, 4]
+  const callback = jest.fn()
 
-  eachArg(array, 0, callback);
-
-  array.forEach((value, index) => {
-    expect(callback).toHaveBeenNthCalledWith(index + 1, value, index);
-  });
-
-});
-
-test("should work with 1 extra arguments", () => {
-
-  const array = [1, 2, 3, 4];
-  const callback = jest.fn();
-  const extra1 = {};
-
-  eachArg(array, 0, callback, extra1);
+  eachArg(array, 0, callback)
 
   array.forEach((value, index) => {
-    expect(callback).toHaveBeenNthCalledWith(index + 1, value, index, extra1);
-  });
+    expect(callback).toHaveBeenNthCalledWith(index + 1, value, index)
+  })
 
-});
+})
 
-test("should work with multiple extra arguments", () => {
+test('should work with 1 extra arguments', () => {
 
-  const array = [1, 2, 3, 4];
-  const callback = jest.fn();
-  const extra1 = {};
-  const extra2: any[] = [];
+  const array = [1, 2, 3, 4]
+  const callback = jest.fn()
+  const extra1 = {}
 
-  eachArg(array, 0, callback, extra1, extra2);
+  eachArg(array, 0, callback, extra1)
 
   array.forEach((value, index) => {
-    expect(callback).toHaveBeenNthCalledWith(index + 1, value, index, extra1, extra2);
-  });
+    expect(callback).toHaveBeenNthCalledWith(index + 1, value, index, extra1)
+  })
 
-});
+})
 
-test("should work with arguments object", () => {
+test('should work with multiple extra arguments', () => {
 
-  const args = [1, 2, 3];
-  const callback = jest.fn();
+  const array = [1, 2, 3, 4]
+  const callback = jest.fn()
+  const extra1 = {}
+  const extra2: any[] = []
+
+  eachArg(array, 0, callback, extra1, extra2)
+
+  array.forEach((value, index) => {
+    expect(callback).toHaveBeenNthCalledWith(index + 1, value, index, extra1, extra2)
+  })
+
+})
+
+test('should work with arguments object', () => {
+
+  const args = [1, 2, 3]
+  const callback = jest.fn()
 
   function func(...args: any[]): void;
   function func() {
     // eslint-disable-next-line prefer-rest-params
-    eachArg(arguments, 0, callback);
+    eachArg(arguments, 0, callback)
   }
 
-  func(...args);
+  func(...args)
 
-  expect(callback).toHaveBeenCalledTimes(args.length);
+  expect(callback).toHaveBeenCalledTimes(args.length)
 
-});
+})
 
-test("should work with empty string", () => {
+test('should work with empty string', () => {
 
-  const callback = jest.fn();
+  const callback = jest.fn()
 
-  expect(() => eachArg("", 0, callback)).not.toThrow();
-  expect(callback).toHaveBeenCalledTimes(0);
+  expect(() => eachArg('', 0, callback)).not.toThrow()
+  expect(callback).toHaveBeenCalledTimes(0)
 
-});
+})
 
-test("should work with string", () => {
+test('should work with string', () => {
 
-  const str = "string";
-  const callback = jest.fn();
+  const str = 'string'
+  const callback = jest.fn()
 
-  eachArg(str, 0, callback);
+  eachArg(str, 0, callback)
 
-  expect(callback).toHaveBeenCalledTimes(str.length);
+  expect(callback).toHaveBeenCalledTimes(str.length)
 
-});
+})
 
-test("should start from given start index", () => {
+test('should start from given start index', () => {
 
-  const values = [2, 3];
-  const args = [1, ...values];
-  const start = args.length - values.length;
-  const callback = jest.fn();
+  const values = [2, 3]
+  const args = [1, ...values]
+  const start = args.length - values.length
+  const callback = jest.fn()
 
-  eachArg(args, start, callback);
+  eachArg(args, start, callback)
 
   values.forEach((value, index) => {
 
@@ -201,20 +201,20 @@ test("should start from given start index", () => {
       index + 1,
       value,
       index + start,
-    );
+    )
 
-  });
+  })
 
-});
+})
 
-test("should start from negative start index", () => {
+test('should start from negative start index', () => {
 
-  const values = [2, 3];
-  const args = [1, ...values];
-  const start = -values.length;
-  const callback = jest.fn();
+  const values = [2, 3]
+  const args = [1, ...values]
+  const start = -values.length
+  const callback = jest.fn()
 
-  eachArg(args, start, callback);
+  eachArg(args, start, callback)
 
   values.forEach((value, index) => {
 
@@ -222,34 +222,34 @@ test("should start from negative start index", () => {
       index + 1,
       value,
       index + args.length + start,
-    );
+    )
 
-  });
+  })
 
-});
+})
 
-test("should skip non-existent values", () => {
+test('should skip non-existent values', () => {
 
   // eslint-disable-next-line no-sparse-arrays
-  const args = [1, , 2, 3];
-  const start = 0;
-  const callback = jest.fn();
+  const args = [1, , 2, 3]
+  const start = 0
+  const callback = jest.fn()
 
-  eachArg(args, start, callback);
+  eachArg(args, start, callback)
 
-  expect(callback).toHaveBeenCalledTimes(args.length - start - 1);
+  expect(callback).toHaveBeenCalledTimes(args.length - start - 1)
 
-});
+})
 
-test("should stop if truthy value returned", () => {
+test('should stop if truthy value returned', () => {
 
-  const args = [1, 2, 3, 4];
-  const start = 1;
-  const stopIndex = 2;
-  const callback = jest.fn((_, index) => index === stopIndex);
+  const args = [1, 2, 3, 4]
+  const start = 1
+  const stopIndex = 2
+  const callback = jest.fn((_, index) => index === stopIndex)
 
-  eachArg(args, start, callback);
+  eachArg(args, start, callback)
 
-  expect(callback).toHaveBeenCalledTimes(stopIndex - start + 1);
+  expect(callback).toHaveBeenCalledTimes(stopIndex - start + 1)
 
-});
+})

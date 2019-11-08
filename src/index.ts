@@ -1,6 +1,6 @@
-import toArray from "args-to-arr";
-import isArrayLike from "is-array-like";
-import isFunction from "is-function";
+import toArray from 'args-to-arr'
+import isArrayLike from 'is-array-like'
+import isFunction from 'is-function'
 
 type Extra = any[];
 
@@ -14,7 +14,7 @@ type EachArgCallback<V, E extends Extra, TH = any> = (
 type WrappedEachArgCallback = (index: number) => any;
 
 function error(message: string): TypeError {
-  return new TypeError(message);
+  return new TypeError(message)
 }
 
 function wrapCallback<V, E extends Extra, TH = any>(
@@ -25,7 +25,7 @@ function wrapCallback<V, E extends Extra, TH = any>(
   argsLen: number,
 ): WrappedEachArgCallback {
 
-  const extraLen = argsLen - 3;
+  const extraLen = argsLen - 3
 
   return (extraLen === 0)
     ? (i: number): any => callback.call<TH, any, any>(
@@ -45,7 +45,7 @@ function wrapCallback<V, E extends Extra, TH = any>(
         arr[i],
         i,
         ...toArray(args, 3) as E,
-      );
+      )
 
 }
 
@@ -73,40 +73,40 @@ function eachArg<V, E extends Extra, TH = any>(
 ): void {
 
   // eslint-disable-next-line prefer-rest-params
-  const args = arguments;
-  const argsLen = args.length;
+  const args = arguments
+  const argsLen = args.length
 
   if (argsLen < 3) {
-    throw error(`expected 3 arguments, got ${argsLen}`);
+    throw error(`expected 3 arguments, got ${argsLen}`)
   }
 
-  if (!isArrayLike(arr) && arr !== "") {
-    throw error(`${arr} can't be converted to array.`);
+  if (!isArrayLike(arr) && arr !== '') {
+    throw error(`${arr} can't be converted to array.`)
   }
 
-  if (typeof start !== "number" || !isFinite(start)) {
-    throw error(`${start} is not a valid start point.`);
+  if (typeof start !== 'number' || !isFinite(start)) {
+    throw error(`${start} is not a valid start point.`)
   }
 
   if (!isFunction(callback)) {
-    throw error(`${callback} is not a function.`);
+    throw error(`${callback} is not a function.`)
   }
 
-  const arrObj = Object(arr) as ArrayLike<V>;
-  const len = arrObj.length;
+  const arrObj = Object(arr) as ArrayLike<V>
+  const len = arrObj.length
 
   if (start < 0) {
-    start += len;
+    start += len
   }
 
-  const cb = wrapCallback(callback, this, arrObj, args, argsLen);
+  const cb = wrapCallback(callback, this, arrObj, args, argsLen)
 
   for (let i = start; i < len; i++) {
     if (i in arrObj && cb(i)) {
-      return;
+      return
     }
   }
 
 }
 
-export default eachArg;
+export default eachArg
