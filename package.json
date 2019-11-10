@@ -24,9 +24,9 @@
     "dev": "bundlib -dw",
     "build": "bundlib -d",
     "test": "jest --color -w 3",
-    "clean": "rm -rf node_modules/.cache/bundlib node_modules/.cache/jest dist types coverage",
+    "clean": "rimraf dist types coverage node_modules/.cache/bundlib node_modules/.cache/jest",
     "lint": "eslint src/**/*.ts __test__/**/*.ts",
-    "prerelease": "npm run clean && npm test && npm run lint && npm run build",
+    "prerelease": "npm run clean && npm run lint && npm test && npm run build",
     "release": "standard-version"
   },
   "dependencies": {
@@ -45,6 +45,7 @@
     "eslint": "^6.6.0",
     "husky": "^3.0.9",
     "jest": "^24.9.0",
+    "rimraf": "^3.0.0",
     "standard-version": "^7.0.0",
     "ts-jest": "^24.1.0",
     "typescript": "^3.7.2"
