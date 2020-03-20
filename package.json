@@ -11,8 +11,8 @@
     "array-like",
     "callback"
   ],
-  "main": "dist/each-arg.cjs.js",
-  "module": "dist/each-arg.es.js",
+  "main": "dist/each-arg.js",
+  "module": "dist/each-arg.mjs",
   "browser": "dist/each-arg.umd.js",
   "types": "types/index.d.ts",
   "typings": "types/index.d.ts",
