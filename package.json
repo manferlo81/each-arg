@@ -17,7 +17,6 @@
   "types": "types/index.d.ts",
   "typings": "types/index.d.ts",
   "bundlib": {
-    "equals": true,
     "min": "browser"
   },
   "scripts": {
