@@ -31,7 +31,7 @@
   "dependencies": {
     "args-to-arr": "^1.4.8",
     "is-array-like": "^1.1.2",
-    "is-function": "^1.0.1"
+    "is-function": "^1.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
