@@ -20,32 +20,37 @@ function error(message: string): TypeError {
 function wrapCallback<V, E extends Extra, TH = any>(
   callback: EachArgCallback<V, E, TH>,
   thisArg: TH,
-  arr: IArguments | V[] | string | ArrayLike<V>,
+  arr: ArrayLike<V>,
   args: IArguments,
   argsLen: number,
 ): WrappedEachArgCallback {
 
-  const extraLen = argsLen - 3;
-
-  return (extraLen === 0)
-    ? (i: number): any => callback.call<TH, any, any>(
+  if (argsLen === 3) {
+    return (i: number) => callback.call<TH, any, any>(
       thisArg,
       arr[i],
       i,
-    )
-    : (extraLen === 1)
-      ? (i: number): any => callback.call<TH, any, any>(
-        thisArg,
-        arr[i],
-        i,
-        args[3],
-      )
-      : (i: number): any => callback.call<TH, any, any>(
-        thisArg,
-        arr[i],
-        i,
-        ...toArray(args, 3) as E,
-      );
+    );
+  }
+
+  if (argsLen === 4) {
+    const extra = args[3];
+    return (i: number) => callback.call<TH, any, any>(
+      thisArg,
+      arr[i],
+      i,
+      extra,
+    );
+  }
+
+  const extra = toArray(args, 3) as E;
+
+  return (i: number): any => callback.call<TH, any, any>(
+    thisArg,
+    arr[i],
+    i,
+    ...extra,
+  );
 
 }
 
@@ -99,7 +104,13 @@ function eachArg<V, E extends Extra, TH = any>(
     start += len;
   }
 
-  const cb = wrapCallback(callback, this, arrObj, args, argsLen);
+  const cb = wrapCallback(
+    callback,
+    this,
+    arrObj,
+    args,
+    argsLen,
+  );
 
   for (let i = start; i < len; i++) {
     if (i in arrObj && cb(i)) {
