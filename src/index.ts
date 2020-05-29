@@ -79,7 +79,7 @@ function eachArg<V, E extends Extra, TH = any>(
 
   // eslint-disable-next-line prefer-rest-params
   const args = arguments;
-  const argsLen = args.length;
+  const { length: argsLen } = args;
 
   if (argsLen < 3) {
     throw error(`expected 3 arguments, got ${argsLen}`);
@@ -89,7 +89,7 @@ function eachArg<V, E extends Extra, TH = any>(
     throw error(`${arr} can't be converted to array.`);
   }
 
-  if (typeof start !== 'number' || !isFinite(start)) {
+  if (typeof start !== 'number' || !Number.isFinite(start)) {
     throw error(`${start} is not a valid start point.`);
   }
 
@@ -98,7 +98,7 @@ function eachArg<V, E extends Extra, TH = any>(
   }
 
   const arrObj = Object(arr) as ArrayLike<V>;
-  const len = arrObj.length;
+  const { length: len } = arrObj;
 
   if (start < 0) {
     start += len;
