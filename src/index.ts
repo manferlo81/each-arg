@@ -11,22 +11,22 @@ type EachArgCallback<V, E extends Extra, TH = any> = (
   ...extra: E
 ) => any;
 
-type WrappedEachArgCallback = (index: number) => any;
+type WrappedEachArgCallback<R> = (index: number) => R;
 
 function error(message: string): TypeError {
   return new TypeError(message);
 }
 
-function wrapCallback<V, E extends Extra, TH = any>(
+function wrapCallback<V, E extends Extra, TH, R>(
   callback: EachArgCallback<V, E, TH>,
   thisArg: TH,
   arr: ArrayLike<V>,
   args: IArguments,
   argsLen: number,
-): WrappedEachArgCallback {
+): WrappedEachArgCallback<R> {
 
   if (argsLen === 3) {
-    return (i: number) => callback.call<TH, any, any>(
+    return (i: number) => callback.call<TH, any, R>(
       thisArg,
       arr[i],
       i,
@@ -34,8 +34,8 @@ function wrapCallback<V, E extends Extra, TH = any>(
   }
 
   if (argsLen === 4) {
-    const extra = args[3];
-    return (i: number) => callback.call<TH, any, any>(
+    const extra = args[3] as never;
+    return (i: number) => callback.call<TH, any, R>(
       thisArg,
       arr[i],
       i,
@@ -45,7 +45,7 @@ function wrapCallback<V, E extends Extra, TH = any>(
 
   const extra = toArray(args, 3) as E;
 
-  return (i: number): any => callback.call<TH, any, any>(
+  return (i: number): any => callback.call<TH, any, R>(
     thisArg,
     arr[i],
     i,
@@ -86,6 +86,7 @@ function eachArg<V, E extends Extra, TH = any>(
   }
 
   if (!isArrayLike(arr) && arr !== '') {
+    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
     throw error(`${arr} can't be converted to array.`);
   }
 
@@ -94,6 +95,7 @@ function eachArg<V, E extends Extra, TH = any>(
   }
 
   if (!isFunction(callback)) {
+    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
     throw error(`${callback} is not a function.`);
   }
 

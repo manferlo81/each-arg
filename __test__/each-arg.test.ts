@@ -2,11 +2,11 @@ import eachArg from '../src';
 
 test('should throw on not enough arguments', () => {
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   expect(() => eachArg([1, 2, 3])).toThrow(TypeError);
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   expect(() => eachArg([1, 2, 3], 0)).toThrow(TypeError);
 
@@ -27,9 +27,7 @@ test('should throw on invalid array-like param', () => {
   ];
 
   invalidArrayLike.forEach((array) => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
-    expect(() => eachArg(array, 0, () => null)).toThrow(TypeError);
+    expect(() => eachArg(array as never, 0, () => null)).toThrow(TypeError);
   });
 
 });
@@ -56,9 +54,7 @@ test('should throw on invalid start param', () => {
   ];
 
   invalidStart.forEach((start) => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
-    expect(() => eachArg([1, 2, 3], start, () => null)).toThrow(TypeError);
+    expect(() => eachArg([1, 2, 3], start as never, () => null)).toThrow(TypeError);
   });
 
 });
@@ -77,9 +73,7 @@ test('should throw on invalid callback param', () => {
   ];
 
   invalidCallback.forEach((callback) => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
-    expect(() => eachArg([1, 2, 3], 0, callback)).toThrow(TypeError);
+    expect(() => eachArg([1, 2, 3], 0, callback as never)).toThrow(TypeError);
   });
 
 });
