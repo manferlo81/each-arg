@@ -26,7 +26,7 @@
     "release": "standard-version"
   },
   "dependencies": {
-    "args-to-arr": "^1.4.8",
+    "args-to-arr": "^1.4.9",
     "is-array-like": "^1.1.2",
     "is-function": "^1.0.2"
   },
