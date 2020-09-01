@@ -31,7 +31,7 @@
     "is-function": "^1.0.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.11.4",
+    "@babel/core": "^7.11.5",
     "@babel/preset-env": "^7.11.0",
     "@types/is-function": "^1.0.0",
     "@types/jest": "^26.0.10",
