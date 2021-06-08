@@ -11,11 +11,17 @@
     "array-like",
     "callback"
   ],
-  "main": "dist/each-arg.js",
-  "module": "dist/each-arg.mjs",
-  "browser": "dist/each-arg.umd.js",
-  "types": "dist/index.d.ts",
-  "typings": "dist/index.d.ts",
+  "type": "commonjs",
+  "exports": {
+    "import": "./dist/each-arg.mjs",
+    "default": "./dist/each-arg.js"
+  },
+  "main": "./dist/each-arg.js",
+  "module": "./dist/each-arg.mjs",
+  "jsnext:main": "./dist/each-arg.mjs",
+  "browser": "./dist/each-arg.umd.js",
+  "types": "./dist/index.d.ts",
+  "typings": "./dist/index.d.ts",
   "scripts": {
     "clean:cache": "rimraf node_modules/.cache/{bundlib,jest}",
     "clean:build": "rimraf dist coverage",
