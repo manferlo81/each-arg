@@ -10,7 +10,7 @@ function normalizeRuleEntry(entry) {
 }
 
 function createRuleNameNormalizer(pluginName) {
-  if (!pluginName) return ruleName => ruleName;
+  if (!pluginName) return (ruleName) => ruleName;
   const pluginPrefix = `${pluginName}/`;
   return (ruleName) => {
     if (ruleName.startsWith(pluginPrefix)) return ruleName;
@@ -34,7 +34,16 @@ const eslintRules = normalizeRules(null, {
 });
 
 const stylisticRules = normalizeRules('@stylistic', {
-  'semi': 'always',
+  semi: 'always',
+  indent: 2,
+  quotes: 'single',
+  'linebreak-style': 'unix',
+
+  'quote-props': 'as-needed',
+  'arrow-parens': 'always',
+  'no-extra-parens': 'all',
+  'no-extra-semi': 'error',
+
   'padded-blocks': 'off',
 });
 
