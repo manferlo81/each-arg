@@ -8,7 +8,7 @@ const config = {
   collectCoverage: true,
   coverageDirectory: 'coverage',
   coverageReporters: [
-    process.env.CI ? 'json' : 'lcov',
+    process.env.CI ? 'json' : 'html',
     'text',
     'text-summary',
   ],
