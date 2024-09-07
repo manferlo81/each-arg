@@ -86,7 +86,6 @@ function eachArg<V, E extends Extra, TH = any>(
   }
 
   if (!isArrayLike(arr) && arr !== '') {
-    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
     throw error(`${arr} can't be converted to array.`);
   }
 
@@ -95,7 +94,6 @@ function eachArg<V, E extends Extra, TH = any>(
   }
 
   if (!isFunction(callback)) {
-    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
     throw error(`${callback} is not a function.`);
   }
 

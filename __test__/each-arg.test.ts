@@ -3,11 +3,13 @@ import eachArg from '../src';
 test('should throw on not enough arguments', () => {
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
+  // @ts-expect-error
+  // eslint-disable-next-line @typescript-eslint/no-confusing-void-expression
   expect(() => eachArg([1, 2, 3])).toThrow(TypeError);
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
+  // @ts-expect-error
+  // eslint-disable-next-line @typescript-eslint/no-confusing-void-expression
   expect(() => eachArg([1, 2, 3], 0)).toThrow(TypeError);
 
 });
@@ -27,7 +29,10 @@ test('should throw on invalid array-like param', () => {
   ];
 
   invalidArrayLike.forEach((array) => {
-    expect(() => eachArg(array as never, 0, () => null)).toThrow(TypeError);
+    const exec = () => {
+      eachArg(array as never, 0, () => null);
+    };
+    expect(exec).toThrow(TypeError);
   });
 
 });
@@ -54,7 +59,10 @@ test('should throw on invalid start param', () => {
   ];
 
   invalidStart.forEach((start) => {
-    expect(() => eachArg([1, 2, 3], start as never, () => null)).toThrow(TypeError);
+    const exec = () => {
+      eachArg([1, 2, 3], start as never, () => null);
+    };
+    expect(exec).toThrow(TypeError);
   });
 
 });
@@ -73,13 +81,17 @@ test('should throw on invalid callback param', () => {
   ];
 
   invalidCallback.forEach((callback) => {
-    expect(() => eachArg([1, 2, 3], 0, callback as never)).toThrow(TypeError);
+    const exec = () => {
+      eachArg([1, 2, 3], 0, callback as never);
+    };
+    expect(exec).toThrow(TypeError);
   });
 
 });
 
 test('should return undefined', () => {
 
+  // eslint-disable-next-line @typescript-eslint/no-confusing-void-expression
   const result = eachArg([1, 2, 3], 0, () => null);
 
   expect(result).toBeUndefined();
@@ -163,8 +175,11 @@ test('should work with arguments object', () => {
 test('should work with empty string', () => {
 
   const callback = jest.fn();
+  const exec = () => {
+    eachArg('', 0, callback);
+  };
 
-  expect(() => eachArg('', 0, callback)).not.toThrow();
+  expect(exec).not.toThrow();
   expect(callback).toHaveBeenCalledTimes(0);
 
 });

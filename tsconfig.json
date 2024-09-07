@@ -1,25 +1,28 @@
 {
   "compilerOptions": {
-    "target": "ES2018",
-    "module": "ES2015",
-    "moduleResolution": "Node",
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Node10",
     "lib": [],
     "esModuleInterop": true,
     "strict": true,
-    "noUnusedLocals": true,
     "noImplicitAny": true,
     "noImplicitThis": true,
     "noImplicitReturns": true,
+    "noImplicitOverride": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "declaration": true,
-    "declarationMap": true
+    "declarationMap": true,
+    "newLine": "crlf"
   },
   "include": [
-    "src/**/*.ts",
-    "__test__/**/*.ts",
-    "jest.config.js",
-    "bundlib.config.mjs"
+    "src",
+    "__test__"
   ],
   "exclude": [
-    "node_modules/**"
+    "node_modules",
+    "dist",
+    "coverage"
   ]
 }
