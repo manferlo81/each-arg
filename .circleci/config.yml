@@ -75,7 +75,7 @@ workflows:
             - test_and_build
           filters:
             branches:
-              only: /master/
+              only: /main/
 
       - publish_to_npm:
           context: npm
