@@ -20,6 +20,10 @@ const config = {
     },
   },
 
+  testMatch: [
+    '**/__test__/*.test.ts',
+  ],
+
   verbose: true,
 };
 
