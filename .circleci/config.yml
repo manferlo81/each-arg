@@ -1,16 +1,16 @@
 version: 2.1
 
 orbs:
-  codecov: codecov/codecov@1.0.5
+  codecov: codecov/codecov@4.1.0
 
 executors:
-  node:
+  executor_node_18:
     docker:
       - image: cimg/node:18.20.4
     working_directory: &working_directory ~/each-arg
 
 commands:
-  npm_publish:
+  command_npm_publish:
     steps:
       - run:
           name: Login to npm
@@ -20,8 +20,8 @@ commands:
           command: npm publish
 
 jobs:
-  test_and_build:
-    executor: node
+  job_test_and_build:
+    executor: executor_node_18
     steps:
       - checkout
       - restore_cache:
@@ -46,41 +46,41 @@ jobs:
           paths:
             - .
 
-  upload_coverage:
-    executor: node
+  job_upload_coverage:
+    executor: executor_node_18
     steps:
       - attach_workspace: &attach_workspace
           at: *working_directory
       - codecov/upload:
           file: coverage/*.json
 
-  publish_to_npm:
-    executor: node
+  job_publish_to_npm:
+    executor: executor_node_18
     steps:
       - attach_workspace: *attach_workspace
-      - npm_publish
+      - command_npm_publish
 
 workflows:
   workflow:
     jobs:
-      - test_and_build:
+      - job_test_and_build:
           filters:
             tags:
               only: /.*/
             branches:
               only: /.*/
 
-      - upload_coverage:
+      - job_upload_coverage:
           requires:
-            - test_and_build
+            - job_test_and_build
           filters:
             branches:
               only: /main/
 
-      - publish_to_npm:
+      - job_publish_to_npm:
           context: npm
           requires:
-            - test_and_build
+            - job_test_and_build
           filters:
             tags:
               only: /^v\d+\.\d+\.\d+$/
