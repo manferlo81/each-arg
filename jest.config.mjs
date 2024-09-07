@@ -10,7 +10,6 @@ const config = {
   coverageReporters: [
     process.env.CI ? 'json' : 'html',
     'text',
-    'text-summary',
   ],
   coverageThreshold: {
     global: {
