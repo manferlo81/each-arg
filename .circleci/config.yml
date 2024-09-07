@@ -4,14 +4,12 @@ orbs:
   codecov: codecov/codecov@1.0.5
 
 executors:
-
   node:
     docker:
-      - image: circleci/node:10
+      - image: cimg/node:18.20.4
     working_directory: &working_directory ~/each-arg
 
 commands:
-
   npm_publish:
     steps:
       - run:
@@ -22,7 +20,6 @@ commands:
           command: npm publish
 
 jobs:
-
   test_and_build:
     executor: node
     steps:
@@ -46,7 +43,8 @@ jobs:
           command: npm run build
       - persist_to_workspace:
           root: *working_directory
-          paths: .
+          paths:
+            - .
 
   upload_coverage:
     executor: node
@@ -63,11 +61,8 @@ jobs:
       - npm_publish
 
 workflows:
-  version: 2
-
   workflow:
     jobs:
-
       - test_and_build:
           filters:
             tags:
