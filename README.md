@@ -23,13 +23,13 @@ npm i each-arg
 ### jsDelivr
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/each-arg@latest/dist/each-arg.umd.js">
+<script src="https://cdn.jsdelivr.net/npm/each-arg@latest/dist/umd/each-arg.umd.js">
 ```
 
 *for production...*
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/each-arg@latest/dist/each-arg.umd.min.js">
+<script src="https://cdn.jsdelivr.net/npm/each-arg@latest/dist/umd/each-arg.umd.min.js">
 ```
 
 [more options...](https://www.jsdelivr.com/package/npm/each-arg?version=latest)
@@ -37,13 +37,13 @@ npm i each-arg
 ### unpkg
 
 ```html
-<script src="https://unpkg.com/each-arg@latest/dist/each-arg.umd.js">
+<script src="https://unpkg.com/each-arg@latest/dist/umd/each-arg.umd.js">
 ```
 
 *for production...*
 
 ```html
-<script src="https://unpkg.com/each-arg@latest/dist/each-arg.umd.min.js">
+<script src="https://unpkg.com/each-arg@latest/dist/umd/each-arg.umd.min.js">
 ```
 
 [more options...](https://unpkg.com/each-arg@latest/)
