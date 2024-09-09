@@ -42,7 +42,6 @@ const stylisticRules = normalizeRules('@stylistic', {
 });
 
 const typescriptRules = normalizeRules('@typescript-eslint', {
-  'no-explicit-any': 'off',
   'restrict-template-expressions': 'off',
 });
 

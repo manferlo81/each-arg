@@ -1,17 +1,7 @@
 import toArray from 'args-to-arr';
 import isArrayLike from 'is-array-like';
 import isFunction from 'is-function';
-
-type Extra = any[];
-
-type EachArgCallback<V, E extends Extra, TH = any> = (
-  this: TH,
-  value: V,
-  index: number,
-  ...extra: E
-) => any;
-
-type WrappedEachArgCallback<R> = (index: number) => R;
+import type { Anything, EachArgCallback, Extra, WrappedEachArgCallback } from './types';
 
 function error(message: string): TypeError {
   return new TypeError(message);
@@ -26,7 +16,7 @@ function wrapCallback<V, E extends Extra, TH, R>(
 ): WrappedEachArgCallback<R> {
 
   if (argsLen === 3) {
-    return (i: number) => callback.call<TH, any, R>(
+    return (i: number) => callback.call<TH, Anything, R>(
       thisArg,
       arr[i],
       i,
@@ -35,7 +25,7 @@ function wrapCallback<V, E extends Extra, TH, R>(
 
   if (argsLen === 4) {
     const extra = args[3] as never;
-    return (i: number) => callback.call<TH, any, R>(
+    return (i: number) => callback.call<TH, Anything, R>(
       thisArg,
       arr[i],
       i,
@@ -45,7 +35,7 @@ function wrapCallback<V, E extends Extra, TH, R>(
 
   const extra = toArray(args, 3) as E;
 
-  return (i: number): any => callback.call<TH, any, R>(
+  return (i: number): Anything => callback.call<TH, Anything, R>(
     thisArg,
     arr[i],
     i,
@@ -54,7 +44,7 @@ function wrapCallback<V, E extends Extra, TH, R>(
 
 }
 
-function eachArg<V, E extends Extra, TH = any>(
+function eachArg<V, E extends Extra, TH = Anything>(
   this: TH,
   arr: IArguments | V[] | string | ArrayLike<V>,
   start: number,
@@ -62,7 +52,7 @@ function eachArg<V, E extends Extra, TH = any>(
   ...extra: E
 ): void;
 
-function eachArg<V, TH = any>(
+function eachArg<V, TH = Anything>(
   this: TH,
   arr: IArguments | V[] | string | ArrayLike<V>,
   start: number,
@@ -70,7 +60,7 @@ function eachArg<V, TH = any>(
   ...extra: Extra
 ): void;
 
-function eachArg<V, E extends Extra, TH = any>(
+function eachArg<V, E extends Extra, TH = Anything>(
   this: TH,
   arr: IArguments | V[] | string | ArrayLike<V>,
   start: number,

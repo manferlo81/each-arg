@@ -1,4 +1,5 @@
 import eachArg from '../src';
+import type { Anything } from '../src/types';
 
 test('should throw on not enough arguments', () => {
 
@@ -103,7 +104,7 @@ test('should inherit this value', () => {
   const thisValue = {};
   const arr = [1, 2, 3];
 
-  const callback = jest.fn(function cb(this: any) {
+  const callback = jest.fn(function cb(this: Anything) {
     expect(this).toBe(thisValue);
   });
 
@@ -145,7 +146,7 @@ test('should work with multiple extra arguments', () => {
   const array = [1, 2, 3, 4];
   const callback = jest.fn();
   const extra1 = {};
-  const extra2: any[] = [];
+  const extra2: Anything[] = [];
 
   eachArg(array, 0, callback, extra1, extra2);
 
@@ -160,7 +161,7 @@ test('should work with arguments object', () => {
   const args = [1, 2, 3];
   const callback = jest.fn();
 
-  function func(...args: any[]): void;
+  function func(...args: Anything[]): void;
   function func() {
     // eslint-disable-next-line prefer-rest-params
     eachArg(arguments, 0, callback);
