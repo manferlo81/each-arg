@@ -1,6 +1,14 @@
 # each-arg
 
-[![CircleCI](https://circleci.com/gh/manferlo81/each-arg.svg?style=svg)](https://circleci.com/gh/manferlo81/each-arg) [![npm](https://badgen.net/npm/v/each-arg)](https://www.npmjs.com/package/each-arg) [![codecov](https://codecov.io/gh/manferlo81/each-arg/branch/main/graph/badge.svg)](https://codecov.io/gh/manferlo81/each-arg) [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/each-arg/badge?style=rounded)](https://www.jsdelivr.com/package/npm/each-arg) [![dependencies](https://badgen.net/david/dep/manferlo81/each-arg)](https://david-dm.org/manferlo81/each-arg) [![dev dependencies](https://badgen.net/david/dev/manferlo81/each-arg)](https://david-dm.org/manferlo81/each-arg?type=dev) [![packagephobia](https://badgen.net/packagephobia/install/each-arg)](https://packagephobia.now.sh/result?p=each-arg) [![bundlephobia](https://badgen.net/bundlephobia/min/each-arg)](https://bundlephobia.com/result?p=each-arg) [![types](https://img.shields.io/npm/types/each-arg.svg)](https://github.com/microsoft/typescript) [![Known Vulnerabilities](https://snyk.io/test/github/manferlo81/each-arg/badge.svg?targetFile=package.json)](https://snyk.io/test/github/manferlo81/each-arg?targetFile=package.json) [![license](https://badgen.net/github/license/manferlo81/each-arg)](LICENSE)
+[![CircleCI](https://circleci.com/gh/manferlo81/each-arg.svg?style=svg)](https://circleci.com/gh/manferlo81/each-arg)
+[![npm](https://badgen.net/npm/v/each-arg)](https://www.npmjs.com/package/each-arg)
+[![codecov](https://codecov.io/gh/manferlo81/each-arg/branch/main/graph/badge.svg)](https://codecov.io/gh/manferlo81/each-arg)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/each-arg/badge?style=rounded)](https://www.jsdelivr.com/package/npm/each-arg)
+[![packagephobia](https://badgen.net/packagephobia/install/each-arg)](https://packagephobia.now.sh/result?p=each-arg)
+[![bundlephobia](https://badgen.net/bundlephobia/min/each-arg)](https://bundlephobia.com/result?p=each-arg)
+[![types](https://img.shields.io/npm/types/each-arg.svg)](https://github.com/microsoft/typescript)
+[![Known Vulnerabilities](https://snyk.io/test/github/manferlo81/each-arg/badge.svg?targetFile=package.json)](https://snyk.io/test/github/manferlo81/each-arg?targetFile=package.json)
+[![license](https://badgen.net/github/license/manferlo81/each-arg)](LICENSE)
 
 Iterates through arguments or any other array-like object starting from a specific index.
 
