@@ -34,22 +34,24 @@ const eslintRules = normalizeRules(null, {
 });
 
 const stylisticRules = normalizeRules('@stylistic', {
-  semi: 'always',
   indent: 2,
-  quotes: 'single',
   'linebreak-style': 'unix',
-
-  'quote-props': 'as-needed',
-  'arrow-parens': 'always',
   'no-extra-parens': 'all',
   'no-extra-semi': 'error',
-
   'padded-blocks': 'off',
 });
 
 const typescriptRules = normalizeRules('@typescript-eslint', {
   'no-explicit-any': 'off',
   'restrict-template-expressions': 'off',
+});
+
+const stylisticConfig = stylistic.configs.customize({
+  semi: true,
+  quotes: 'single',
+  quoteProps: 'as-needed',
+  arrowParens: true,
+  braceStyle: '1tbs',
 });
 
 const typescriptConfig = config(
@@ -61,10 +63,9 @@ const typescriptConfig = config(
 
 export default config(
   { ignores: ['dist', 'coverage'] },
-  { files: ['**/*.{js,mjs,cjs,ts}'] },
   { languageOptions: { globals: { ...globals.node, ...globals.browser } } },
   pluginJs.configs.recommended,
-  stylistic.configs['recommended-flat'],
+  stylisticConfig,
   ...typescriptConfig,
   { rules: { ...eslintRules, ...stylisticRules, ...typescriptRules } },
 );
