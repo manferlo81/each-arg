@@ -7,10 +7,9 @@ const config = {
 
   collectCoverage: true,
   coverageDirectory: 'coverage',
-  coverageReporters: [
-    process.env.CI ? 'json' : 'html',
-    'text',
-  ],
+  coverageReporters: process.env.CI
+    ? ['json', 'clover', 'cobertura']
+    : ['html', 'text'],
   coverageThreshold: {
     global: {
       branches: threshold,
