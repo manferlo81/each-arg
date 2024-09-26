@@ -54,7 +54,7 @@
     "@types/eslint__js": "^8.42.3",
     "@types/is-function": "^1.0.3",
     "@types/jest": "^29.5.12",
-    "@types/node": "^22.5.4",
+    "@types/node": "^22.7.2",
     "bundlib": "^0.21.1",
     "chokidar": "^3.6.0",
     "eslint": "^9.10.0",
