@@ -1,0 +1,25 @@
+changelog:
+  exclude:
+    authors:
+      - dependabot
+      - app/dependabot
+    labels:
+      - ignore-for-release
+      - ignore for release
+
+  categories:
+    - title: Breaking Changes
+      labels:
+        - breaking change
+
+    - title: Features
+      labels:
+        - feature
+
+    - title: Other Changes
+      labels:
+        - "*"
+      exclude:
+        labels:
+          - breaking change
+          - feature

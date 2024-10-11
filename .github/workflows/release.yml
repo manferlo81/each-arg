@@ -1,0 +1,37 @@
+name: Create GitHub Release
+run-name:  Create GitHub Release for each-arg ${{ github.ref_name }}
+
+on:
+  push:
+    tags:
+      - v*.*.*
+
+jobs:
+  create_release:
+    name: Create GitHub Release
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout, Setup Node.js v${{ env.NODE_VERSION }} and Install dependencies
+        uses: manferlo81/action-checkout-node-install@initial
+        env:
+          NODE_VERSION: 20.x
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Build
+        run: npm run build
+
+      - name: Create Tarball
+        run: npm pack
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          make_latest: true
+          generate_release_notes: true
+          files: each-arg-*.tgz
