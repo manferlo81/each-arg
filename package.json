@@ -47,26 +47,26 @@
     "is-function": "^1.0.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.25.8",
-    "@babel/preset-env": "^7.25.8",
-    "@eslint/js": "^9.12.0",
-    "@stylistic/eslint-plugin": "^2.9.0",
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "@eslint/js": "^9.14.0",
+    "@stylistic/eslint-plugin": "^2.10.1",
     "@types/eslint__js": "^8.42.3",
     "@types/is-function": "^1.0.3",
-    "@types/jest": "^29.5.13",
-    "@types/node": "^22.7.5",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.9.0",
     "bundlib": "^0.21.4",
     "chokidar": "^4.0.1",
-    "eslint": "^9.12.0",
-    "globals": "^15.11.0",
+    "eslint": "^9.14.0",
+    "globals": "^15.12.0",
     "husky": "^9.1.6",
     "jest": "^29.7.0",
     "npm-run-all": "^4.1.5",
     "rimraf": "^6.0.1",
     "standard-version": "^9.5.0",
     "ts-jest": "^29.2.5",
-    "typescript": "~5.5.4",
-    "typescript-eslint": "^8.8.1"
+    "typescript": "^5.6.3",
+    "typescript-eslint": "^8.13.0"
   },
   "overrides": {
     "bundlib": {
