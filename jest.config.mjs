@@ -5,7 +5,7 @@ const config = {
   cacheDirectory: 'node_modules/.cache/jest',
   preset: 'ts-jest',
 
-  collectCoverage: true,
+  collectCoverage: !process.env.SKIP_COVERAGE,
   coverageDirectory: 'coverage',
   coverageReporters: process.env.CI
     ? ['json', 'clover', 'cobertura']
