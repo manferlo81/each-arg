@@ -1,10 +1,10 @@
-import toArray from 'args-to-arr';
-import isArrayLike from 'is-array-like';
-import isFunction from 'is-function';
-import type { Anything, EachArgCallback, Extra, WrappedEachArgCallback } from './types';
+import toArray from 'args-to-arr'
+import isArrayLike from 'is-array-like'
+import isFunction from 'is-function'
+import type { Anything, EachArgCallback, Extra, WrappedEachArgCallback } from './types'
 
 function error(message: string): TypeError {
-  return new TypeError(message);
+  return new TypeError(message)
 }
 
 function wrapCallback<V, E extends Extra, TH, R>(
@@ -20,27 +20,27 @@ function wrapCallback<V, E extends Extra, TH, R>(
       thisArg,
       arr[i],
       i,
-    );
+    )
   }
 
   if (argsLen === 4) {
-    const extra = args[3] as never;
+    const extra = args[3] as never
     return (i: number) => callback.call<TH, Anything, R>(
       thisArg,
       arr[i],
       i,
       extra,
-    );
+    )
   }
 
-  const extra = toArray(args, 3) as E;
+  const extra = toArray(args, 3) as E
 
   return (i: number): Anything => callback.call<TH, Anything, R>(
     thisArg,
     arr[i],
     i,
     ...extra,
-  );
+  )
 
 }
 
@@ -50,7 +50,7 @@ function eachArg<V, E extends Extra, TH = Anything>(
   start: number,
   callback: EachArgCallback<V, E, TH>,
   ...extra: E
-): void;
+): void
 
 function eachArg<V, TH = Anything>(
   this: TH,
@@ -58,7 +58,7 @@ function eachArg<V, TH = Anything>(
   start: number,
   callback: EachArgCallback<V, Extra, TH>,
   ...extra: Extra
-): void;
+): void
 
 function eachArg<V, E extends Extra, TH = Anything>(
   this: TH,
@@ -68,30 +68,30 @@ function eachArg<V, E extends Extra, TH = Anything>(
 ): void {
 
   // eslint-disable-next-line prefer-rest-params
-  const args = arguments;
-  const { length: argsLen } = args;
+  const args = arguments
+  const { length: argsLen } = args
 
   if (argsLen < 3) {
-    throw error(`expected 3 arguments, got ${argsLen}`);
+    throw error(`expected 3 arguments, got ${argsLen}`)
   }
 
   if (!isArrayLike(arr) && arr !== '') {
-    throw error(`${arr} can't be converted to array.`);
+    throw error(`${arr} can't be converted to array.`)
   }
 
   if (typeof start !== 'number' || !Number.isFinite(start)) {
-    throw error(`${start} is not a valid start point.`);
+    throw error(`${start} is not a valid start point.`)
   }
 
   if (!isFunction(callback)) {
-    throw error(`${callback} is not a function.`);
+    throw error(`${callback} is not a function.`)
   }
 
-  const arrObj = Object(arr) as ArrayLike<V>;
-  const { length: len } = arrObj;
+  const arrObj = Object(arr) as ArrayLike<V>
+  const { length: len } = arrObj
 
   if (start < 0) {
-    start += len;
+    start += len
   }
 
   const cb = wrapCallback(
@@ -100,14 +100,14 @@ function eachArg<V, E extends Extra, TH = Anything>(
     arrObj,
     args,
     argsLen,
-  );
+  )
 
   for (let i = start; i < len; i++) {
     if (i in arrObj && cb(i)) {
-      return;
+      return
     }
   }
 
 }
 
-export default eachArg;
+export default eachArg

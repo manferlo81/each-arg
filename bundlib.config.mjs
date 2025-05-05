@@ -1,4 +1,4 @@
-import { config } from 'bundlib';
+import { config } from 'bundlib'
 
 export default config({
   esModule: true,
@@ -6,4 +6,4 @@ export default config({
   min: ['browser', 'module'],
   equals: true,
   project: './tsconfig.build.json',
-});
+})

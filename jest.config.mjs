@@ -1,13 +1,13 @@
-import { createDefaultPreset } from 'ts-jest';
+import { createDefaultPreset } from 'ts-jest'
 
-const collectCoverage = !process.env.SKIP_COVERAGE;
-const runningOnCI = process.env.CI;
+const collectCoverage = !process.env.SKIP_COVERAGE
+const runningOnCI = process.env.CI
 
-const threshold = 95;
+const threshold = 95
 
 const typescriptJestPreset = createDefaultPreset({
   tsconfig: './tsconfig.json',
-});
+})
 
 /** @type { import("ts-jest").JestConfigWithTsJest } */
 const config = {
@@ -33,6 +33,6 @@ const config = {
 
   cacheDirectory: 'node_modules/.cache/jest',
   verbose: true,
-};
+}
 
-export default config;
+export default config
