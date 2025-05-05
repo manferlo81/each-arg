@@ -1,13 +1,21 @@
+import { createDefaultPreset } from 'ts-jest';
+
+const collectCoverage = !process.env.SKIP_COVERAGE;
+const runningOnCI = process.env.CI;
+
 const threshold = 95;
 
-/** @type { import("jest").Config } */
-const config = {
-  cacheDirectory: 'node_modules/.cache/jest',
-  preset: 'ts-jest',
+const typescriptJestPreset = createDefaultPreset({
+  tsconfig: './tsconfig.json',
+});
 
-  collectCoverage: !process.env.SKIP_COVERAGE,
+/** @type { import("ts-jest").JestConfigWithTsJest } */
+const config = {
+  ...typescriptJestPreset,
+
+  collectCoverage,
   coverageDirectory: 'coverage',
-  coverageReporters: process.env.CI
+  coverageReporters: runningOnCI
     ? ['json', 'clover', 'cobertura']
     : ['html', 'text'],
   coverageThreshold: {
@@ -23,6 +31,7 @@ const config = {
     '**/__test__/*.test.ts',
   ],
 
+  cacheDirectory: 'node_modules/.cache/jest',
   verbose: true,
 };
 
