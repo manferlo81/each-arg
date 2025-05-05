@@ -21,7 +21,6 @@
     "__test__"
   ],
   "exclude": [
-    "node_modules",
     "dist",
     "coverage"
   ]
