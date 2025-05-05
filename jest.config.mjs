@@ -16,8 +16,8 @@ const config = {
   collectCoverage,
   coverageDirectory: 'coverage',
   coverageReporters: runningOnCI
-    ? ['json', 'clover', 'cobertura']
-    : ['html', 'text'],
+    ? ['text', 'json', 'clover', 'cobertura']
+    : ['text', 'html'],
   coverageThreshold: {
     global: {
       branches: threshold,
